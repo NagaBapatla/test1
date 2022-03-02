@@ -9,6 +9,15 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+- task: VSTest@2
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\*test*.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
